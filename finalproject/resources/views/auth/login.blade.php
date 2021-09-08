@@ -69,8 +69,8 @@
                     <div class="form-group row mb-0">
                         <div class="col-md-8 offset-md-4">
                             <!--googleログインボタンを追加-->
-                            <a class="btn btn-social btn-google mt-2" href="login/twitter">
-                                <i class="fab fa-google" aria-hidden="true"></i>Twitterアカウントでログイン
+                            <a class="btn btn-social btn-google mt-2" href="login/google">
+                                <i class="fab fa-google" aria-hidden="true"></i>Googleアカウントでログイン
                             </a>
                         </div>
                     </div>

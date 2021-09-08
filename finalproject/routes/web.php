@@ -23,5 +23,9 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('login/twitter', 'Auth\LoginController@redirectToTwitterProvider');
-Route::get('login/twitter/callback', 'Auth\LoginController@handleTwitterProviderCallback');
+//login-google
+Route::get('login/google', 'Auth\LoginController@redirectToGoogle');
+Route::get('login/google/callback', 'Auth\LoginController@handleGoogleCallback');
+
+//posts
+Route::get('/posts', 'PostController@index');

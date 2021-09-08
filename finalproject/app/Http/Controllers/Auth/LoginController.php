@@ -45,27 +45,31 @@ class LoginController extends Controller
       return 'name';
     }
     
-    //twitter login
-    public function redirectToTwitterProvider()
+    //login-google
+    //redirect
+    public function redirectToGoogle()
     {
-       return Socialite::driver('twitter')->redirect();
+       return Socialite::driver('google')->redirect();
     }
     
-    // twitter
-     public function handleTwitterProviderCallback(){
+    //google
+     public function handleGoogleCallback(){
+         
+         $user = Socialite::driver('google')->user();
+         
 
-       try {
-           $user = Socialite::with("twitter")->user();
-       } 
-       catch (\Exception $e) {
-           return redirect('/login')->with('oauth_error', 'ログインに失敗しました');
-           // エラーならログイン画面へ転送
-       }
+    //   try {
+    //       $user = Socialite::with("twitter")->user();
+    //   } 
+    //   catch (\Exception $e) {
+    //       return redirect('/login')->with('oauth_error', 'ログインに失敗しました');
+    //       // エラーならログイン画面へ転送
+    //   }
        
-       $myinfo = User::firstOrCreate(['token' => $user->token ],
-                 ['name' => $user->nickname,'email' => $user->getEmail()]);
-                 Auth::login($myinfo);
-                 return redirect()->to('/'); // homeへ転送
+    //   $myinfo = User::firstOrCreate(['token' => $user->token ],
+    //              ['name' => $user->nickname,'email' => $user->getEmail()]);
+    //              Auth::login($myinfo);
+    //              return redirect()->to('/'); // homeへ転送
     
     }
     

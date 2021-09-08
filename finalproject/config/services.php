@@ -30,10 +30,10 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
     
-    'twitter' => [
-       'client_id' => env('TWITTER_CLIENT_ID'),
-       'client_secret' => env('TWITTER_CLIENT_SECRET'),
-       'redirect' => env('CALLBACK_URL')
+    'google' => [
+        'client_id' => '526316415068-ek1srd150rqf1gbhspe3gns3rmk5vt8u.apps.googleusercontent.com',
+        'client_secret' => 'O6koNjwf_lc5x2McelHCnXcG',
+	    'redirect' => 'http://localhost/login/google/callback',
     ],
 
 ];
