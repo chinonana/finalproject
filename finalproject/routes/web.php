@@ -11,21 +11,20 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Auth::routes();
+Route::get('/login', 'Auth\LoginController@index')->name('home');
 
-Route::get('/home', 'HomeController@index')->name('home');
 
-Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
 
-//login-google
+
+
+
+
+//login/google
 Route::get('login/google', 'Auth\LoginController@redirectToGoogle');
 Route::get('login/google/callback', 'Auth\LoginController@handleGoogleCallback');
 
-//posts
-Route::get('/posts', 'PostController@index');
+//ページ表示
+//index.blade
+Route::get('/', 'PostController@index');
