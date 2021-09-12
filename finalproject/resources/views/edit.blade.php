@@ -1,4 +1,4 @@
-
+<!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <meta charset="utf-8">
@@ -24,7 +24,7 @@
 				    </div>
 				    <div id="navbar" class="navbar-collapse collapse">
 				    	<ul class="nav navbar-nav navbar-right">
-				    		<!--<li><a href='/posts/flower'>検索</a></li>-->
+				    		<li><a href='/posts/flower'>検索</a></li>
 					        <li><a href='/posts/create'>投稿</a></li>
 					        <li><a href='/login'>ログイン</a></li>
 				            <li><a href='/register'>会員登録</a></li>
@@ -33,10 +33,13 @@
 		        </div><!--/.container-fluid -->
 	        </nav><!--"navbar navbar-default"-->
         </div><!--"container"-->
-
-<!-- body内だけを表示しています。 -->
-<body>
-
+        
+    <body>
+                
+            
+            
+        <h1 class="title">編集画面</h1>
+    <div class="content">
         <form action="/posts/{{ $post->id }}" method="POST">
             @csrf
             @method('PUT')
@@ -51,5 +54,12 @@
             <input type="submit" value="保存">
         </form>
     </div>
-</body>
+           
+ 
+        
+        <div class="footer">
+            
+            <a href="/">戻る</a>
+        </div>
+    </body>
 </html>
