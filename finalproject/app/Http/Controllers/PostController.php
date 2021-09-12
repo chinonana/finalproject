@@ -15,21 +15,31 @@ class PostController extends Controller
     //index表示
     public function index(Post $post)
     {
-    return view('index')->with(['posts' => $post->getPaginateByLimit()]);
-    } 
-    //カテゴリ表示
+        $posts=Post::with('category')->paginate(10);
+        return view('index')->with(['posts' => $posts]);
+    //$post->getPaginateByLimit()＝ポストテーブルの中身
+    //'posts' =>＄ポストにポスつという名前にする
+    }    
+    
+    //個別post表示
+    public function show(Post $post)
+    {
+        return view('show')->with(['post' => $post]);
+    }
+
+    //create表示
     public function create(Category $category)
     {
         //カテゴリーの情報をカテゴリーズから持ってくる
         return view('create')->with(['categories'=>$category->get()]);
         //一緒にcategoriesのデータも渡すwithで
     }
-    
-    //個別ページ表示
-    public function show(Post $post)
+    //投稿製作処理
+    public function store(Post $post, PostRequest $request)
     {
-        return view('show')->with(['post' => $post]);
+        $input = $request['post'];
+        $post->fill($input)->save();
+        return redirect('/posts/' . $post->id);
     }
-    
     
 }
