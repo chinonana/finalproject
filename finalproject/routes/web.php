@@ -20,21 +20,24 @@ Route::get('login/google/callback', 'Auth\LoginController@handleGoogleCallback')
 Route::get('/', 'PostController@index');
 //create
 Route::get('/posts/create', 'PostController@create');
-
-//個別post
-Route::get('/posts/{post}', 'PostController@show');
 //個別投稿の編集画面表示
 Route::get('/posts/{post}/edit', 'PostController@edit');
+//edituodate
+Route::get('/posts/{post}', 'PostController@update');
+//個別post
+Route::get('/posts/{post}', 'PostController@show');
 
 // データ編集
 //create後の個別表示
 Route::post('/posts', 'PostController@store');
+// 削除
 
 
 
 
 //普通のloginページ
 Auth::routes();
-Auth::routes();
+
+
 
 Route::get('/home', 'HomeController@index')->name('home');

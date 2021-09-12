@@ -44,13 +44,38 @@
                 <p class='category'>{{$post->category['category']}}</p>
             </div>
             
+            <p class="edit">[<a href="/posts/{{ $post->id }}/edit">編集</a>]</p>
+            
+            <form action="/posts/{{ $post->id }}" id="form_{{ $post->id }}" method="post" style="display:inline">
+                 @csrf
+                 @method('DELETE')
+                 <button type="submit">削除</button> 
+            </form>   
+            
+                
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
             <h3>コメント一覧</h3>
             @foreach($post->comments as $single_comment)
             <p>{{ $single_comment->comment }}</p><br />
           　@endforeach
           　
           　
-          　<p class="edit">[<a href="/posts/{{ $post->id }}/edit">編集</a>]</p>
+          　
           　
           　
  
@@ -89,5 +114,22 @@
             
             <a href="/">戻る</a>
         </div>
+        
+        
+        <!--削除警告-->
+        <script>
+            function deletePost(e){
+                'use strict';
+                if (confirm('削除すると復元できません。\n本当に削除しますか？'))
+                {
+                    document.getElementById('form_delete').submit();
+                }
+            }
+        </script>
+        
+        
+        
+        
+        
     </body>
 </html>
