@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <meta charset="utf-8">
@@ -34,21 +33,32 @@
 	        </nav><!--"navbar navbar-default"-->
         </div><!--"container"-->
         
-        <!--記事一覧-->
-        <h1>保存小説一覧</h1>
-        <div class='posts'>
-            <div class="col-xs-12">
-            @foreach ($posts as $post)
-                <div class='post'>
-                    <h2><a href="/posts/{{ $post->id }}">{{ $post->title }}</a>
-                    <p class='body'>{{ $post->body }}</p>
-                    <p class='category'>{{$post->category['category']}}</p>
+        <!--create-->
+        <h1>記事製作画面</h1>
+        <form action="/posts" method="POST">
+            @csrf
+            <div class="title">
+                <h2>作品名</h2>
+                <input type="text" name="post[title]" placeholder="作品名を入力してください" value="{{ old('post.title') }}"/>
+                <p class="title__error" style="color:red">{{ $errors->first('post.title') }}</p>
+            </div>
+            <div class="body">
+                <h2>URL</h2>
+                <textarea name="post[body]" placeholder="URLを入力してください">{{ old('post.body') }}</textarea>
+                <p class="body__error" style="color:red">{{ $errors->first('post.body') }}</p>
+            </div>
+            <div class="category_id">
+            	<h2>カテゴリー</h2>
+                <div class="col-md-6">
+                <select class="form-control" name="post[category_id]">
+                @foreach ($categories as $category)
+                <option value={{$category->id}}>{{$category->category}}</option>
+                @endforeach
+                </select>
                 </div>
-            @endforeach
-            </div><!--"col-xs-12"-->
-        </div><!--post-->
-        <div class='paginate'>
-            {{ $posts->links() }}
-        </div><!--paginate-->
-    </body><!--11-->
+            </div>
+            <input type="submit" value="保存"/>
+        </form>
+        <div class="back">[<a href="/">back</a>]</div>
+    </body>
 </html>

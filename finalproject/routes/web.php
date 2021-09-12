@@ -11,16 +11,6 @@
 |
 */
 
-Auth::routes();
-Route::get('/login', 'Auth\LoginController@index')->name('home');
-
-
-
-
-
-
-
-
 //login/google
 Route::get('login/google', 'Auth\LoginController@redirectToGoogle');
 Route::get('login/google/callback', 'Auth\LoginController@handleGoogleCallback');
@@ -28,3 +18,23 @@ Route::get('login/google/callback', 'Auth\LoginController@handleGoogleCallback')
 //ページ表示
 //index.blade
 Route::get('/', 'PostController@index');
+//create
+Route::get('/posts/create', 'PostController@create');
+
+//個別post
+Route::get('/posts/{post}', 'PostController@show');
+//個別投稿の編集画面表示
+Route::get('/posts/{post}/edit', 'PostController@edit');
+
+// データ編集
+//create後の個別表示
+Route::post('/posts', 'PostController@store');
+
+
+
+
+//普通のloginページ
+Auth::routes();
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

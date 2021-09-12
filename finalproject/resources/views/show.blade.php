@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <meta charset="utf-8">
@@ -24,7 +24,7 @@
 				    </div>
 				    <div id="navbar" class="navbar-collapse collapse">
 				    	<ul class="nav navbar-nav navbar-right">
-				    		<!--<li><a href='/posts/flower'>検索</a></li>-->
+				    		<li><a href='/posts/flower'>検索</a></li>
 					        <li><a href='/posts/create'>投稿</a></li>
 					        <li><a href='/login'>ログイン</a></li>
 				            <li><a href='/register'>会員登録</a></li>
@@ -34,21 +34,60 @@
 	        </nav><!--"navbar navbar-default"-->
         </div><!--"container"-->
         
-        <!--記事一覧-->
-        <h1>保存小説一覧</h1>
-        <div class='posts'>
-            <div class="col-xs-12">
-            @foreach ($posts as $post)
-                <div class='post'>
-                    <h2><a href="/posts/{{ $post->id }}">{{ $post->title }}</a>
-                    <p class='body'>{{ $post->body }}</p>
-                    <p class='category'>{{$post->category['category']}}</p>
-                </div>
-            @endforeach
-            </div><!--"col-xs-12"-->
-        </div><!--post-->
-        <div class='paginate'>
-            {{ $posts->links() }}
-        </div><!--paginate-->
-    </body><!--11-->
+    <body>
+        <h2 class="title">
+            {{ $post->title }}
+        </h2>
+        <div class="col-xs-12">
+            <div class="content__post">
+                <p>{{ $post->body }}</p> 
+                <p class='category'>{{$post->category['category']}}</p>
+            </div>
+            
+            <h3>コメント一覧</h3>
+            @foreach($post->comments as $single_comment)
+            <p>{{ $single_comment->comment }}</p><br />
+          　@endforeach
+          　
+          　
+          　<p class="edit">[<a href="/posts/{{ $post->id }}/edit">編集</a>]</p>
+          　
+          　
+ 
+<!--枠　見た目用-->
+    <div class="form-group">
+     <label for="body">
+     口コミを投稿してください
+     </label>
+ 
+        <textarea
+            id="comment"
+            name="comment"
+            class="form-control {{ $errors->has('comment') ? 'is-invalid' : '' }}"
+            rows="4"
+        >{{ old('comment') }}</textarea>
+        @if ($errors->has('comment'))
+         <div class="invalid-feedback">
+         {{ $errors->first('comment') }}
+         </div>
+        @endif
+    </div>
+ 
+    <div class="mt-4">
+     <button type="submit" class="btn btn-primary">
+     コメントする
+     </button>
+    </div>
+</form>
+        <!--コメント欄-->
+        </div>
+        
+        
+        
+        
+        <div class="footer">
+            
+            <a href="/">戻る</a>
+        </div>
+    </body>
 </html>
